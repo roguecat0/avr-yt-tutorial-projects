@@ -1,0 +1,22 @@
+[build]
+target="avr-none"
+rustflags=["-C","target-cpu=atmega328p"]
+
+
+[target.'cfg(target_arch="avr")']
+runner= "ravedude"
+
+[unstable]
+build-std=["core"]
+
+[profile.dev]
+opt-level="s"
+panic="abort"
+lto=true
+
+[profile.release]
+opt-level="s"
+panic="abort"
+lto=true
+debug=true
+codegen-units=1
