@@ -225,5 +225,7 @@ name = "yt_tutorial_projects"
 version = "0.1.0"
 dependencies = [
  "arduino-hal",
+ "avr-hal-generic",
+ "embedded-hal 1.0.0",
  "panic-halt",
 ]
