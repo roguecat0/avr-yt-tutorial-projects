@@ -4,7 +4,7 @@ rustflags=["-C","target-cpu=atmega328p"]
 
 
 [target.'cfg(target_arch="avr")']
-runner= "ravedude"
+runner= "./run.sh"
 
 [unstable]
 build-std=["core"]
@@ -20,3 +20,6 @@ panic="abort"
 lto=true
 debug=true
 codegen-units=1
+
+[alias]
+rr = "run --release"

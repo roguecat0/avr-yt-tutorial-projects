@@ -2,6 +2,7 @@
 name = "yt_tutorial_projects"
 version = "0.1.0"
 edition = "2024"
+default-run="bin_counter"
 
 [dependencies]
 embedded-hal = "1.0.0"
@@ -13,3 +14,4 @@ features = ["arduino-uno"]
 
 [dependencies.avr-hal-generic]
 git="https://github.com/Rahix/avr-hal" 
+
