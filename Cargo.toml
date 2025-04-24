@@ -2,7 +2,7 @@
 name = "yt_tutorial_projects"
 version = "0.1.0"
 edition = "2024"
-default-run="sin_wave"
+default-run="serial_in"
 
 [dependencies]
 embedded-hal = "1.0.0"
@@ -10,6 +10,7 @@ panic-halt = "1.0.0"
 ufmt = "0.2.0"
 libm = "0.2.11"
 micromath = "2.1.0"
+nb = "1.1.0"
 
 [dependencies.arduino-hal]
 git="https://github.com/Rahix/avr-hal" 
