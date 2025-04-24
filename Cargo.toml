@@ -2,12 +2,13 @@
 name = "yt_tutorial_projects"
 version = "0.1.0"
 edition = "2024"
-default-run="warning_light"
+default-run="sin_wave"
 
 [dependencies]
 embedded-hal = "1.0.0"
 panic-halt = "1.0.0"
 ufmt = "0.2.0"
+libm = "0.2.11"
 
 [dependencies.arduino-hal]
 git="https://github.com/Rahix/avr-hal" 
