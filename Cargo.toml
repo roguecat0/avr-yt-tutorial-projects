@@ -9,6 +9,7 @@ embedded-hal = "1.0.0"
 panic-halt = "1.0.0"
 ufmt = "0.2.0"
 libm = "0.2.11"
+micromath = "2.1.0"
 
 [dependencies.arduino-hal]
 git="https://github.com/Rahix/avr-hal" 
