@@ -1,4 +1,4 @@
 [general]
 board='uno'
 serial-baudrate=57600
-open-console=false
+open-console=true
