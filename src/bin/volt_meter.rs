@@ -19,7 +19,7 @@ fn main() -> ! {
         let value = a0.analog_read(&mut adc);
         let v1 = value as u32 * VT / 1024;
         let rr = R1 * VT / v1 - R1;
-        ufmt::uwrite!(serial, "val: {}, mV: {}, Rr: {}       \r", value, v1, rr)
+        ufmt::uwriteln!(serial, "val: {}, mV: {}, Rr: {}       \r", value, v1, rr)
             .unwrap_infallible();
         arduino_hal::delay_ms(100);
     }
