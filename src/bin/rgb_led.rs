@@ -33,7 +33,7 @@ fn main() -> ! {
     blue_led.enable();
     green_led.enable();
     let mut i = 0;
-
+    // todo: better use YIQ color space
     loop {
         let red = brightness_plot(i * RED_RICO);
         let blue =
