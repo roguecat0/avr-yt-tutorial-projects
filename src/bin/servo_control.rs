@@ -17,44 +17,33 @@
 #![no_main]
 
 use panic_halt as _;
+use yt_tutorial_projects::servo::IntoServo;
 
 #[arduino_hal::entry]
 fn main() -> ! {
     let dp = arduino_hal::Peripherals::take().unwrap();
     let pins = arduino_hal::pins!(dp);
-
-    // Important because this sets the bit in the DDR register!
-    // pins.d9.into_output();
-    pins.d10.into_output();
-
-    // - TC1 runs off a 250kHz clock, with 5000 counts per overflow => 50 Hz signal.
-    // - Each count increases the duty-cycle by 4us.
-    // - Use OC1A which is connected to D9 of the Arduino Uno.
     let tc1 = dp.TC1;
-    tc1.icr1.write(|w| w.bits(4999));
-    // if pin 9
-    // tc1.tccr1a
-    //     // .write(|w| w.wgm1().bits(0b10).com1a().match_clear());
-    //     .write(|w| unsafe { w.bits(0b10000010) });
-    // tc1.tccr1b
-    //     // .write(|w| w.wgm1().bits(0b11).cs1().prescale_64());
-    //     .write(|w| unsafe { w.bits(0b00011011) });
-    // if pin 10
-    tc1.tccr1a
-        .write(|w| w.wgm1().bits(0b10).com1b().match_clear());
-    tc1.tccr1b
-        .write(|w| w.wgm1().bits(0b11).cs1().prescale_64());
+
+    let mut servo_p9 = pins.d9.into_output().into_servo(&tc1);
+    let mut servo_p10 = pins.d10.into_output().into_servo(&tc1);
 
     loop {
-        // 100 counts => 0.4ms
-        // 700 counts => 2.8ms
-        for duty in 100..=700 {
-            // pin 9
-            // tc1.ocr1a.write(|w| w.bits(duty));
-            // pint 10
-            tc1.ocr1b.write(|w| w.bits(duty));
-
+        for i in 0..180 {
+            servo_p9.set_angle(i, &tc1);
+            servo_p10.set_angle(180 - i, &tc1);
             arduino_hal::delay_ms(20);
         }
     }
+}
+
+#[allow(dead_code)]
+fn to_bin_rep(byte: u8) -> [char; 8] {
+    let mut res = ['0'; 8];
+    for i in 0..8 {
+        if byte & (1 << i) != 0 {
+            res[i] = '1'
+        }
+    }
+    res
 }
