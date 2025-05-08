@@ -39,9 +39,9 @@ fn main() -> ! {
             }
             Ok(n) => {
                 ufmt::uwriteln!(serial, "number: {}", n).unwrap_infallible();
-                cycle(&mut latch_pin);
+                pulse(&mut latch_pin);
                 shift_out(&mut clock_pin, &mut input_pin, (n & 255) as u8);
-                cycle(&mut latch_pin);
+                pulse(&mut latch_pin);
             }
         }
     }
@@ -55,7 +55,7 @@ fn shift_out(clock_pin: &mut DynPin, input_pin: &mut DynPin, byte: u8) {
         } else {
             input_pin.set_low();
         }
-        cycle(clock_pin);
+        pulse(clock_pin);
     }
 }
 fn parse_number(arr: &[u8; 3]) -> Result<u32, &'static str> {
@@ -68,7 +68,7 @@ fn parse_number(arr: &[u8; 3]) -> Result<u32, &'static str> {
     Ok(number)
 }
 #[inline]
-fn cycle(dyn_pin: &mut DynPin) {
+fn pulse(dyn_pin: &mut DynPin) {
     dyn_pin.set_high();
     dyn_pin.set_low();
 }
