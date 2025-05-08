@@ -2,7 +2,7 @@
 name = "yt_tutorial_projects"
 version = "0.1.0"
 edition = "2024"
-default-run="shift_register"
+default-run="lcd"
 
 [dependencies]
 embedded-hal = "1.0.0"
@@ -12,6 +12,7 @@ libm = "0.2.11"
 micromath = "2.1.0"
 nb = "1.1.0"
 uln2003 = "0.4.0"
+ag-lcd = {version="0.3.0",features=["ufmt"]}
 
 [dependencies.arduino-hal]
 git="https://github.com/Rahix/avr-hal" 
